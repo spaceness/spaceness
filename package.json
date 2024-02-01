@@ -1,5 +1,5 @@
 {
-  "name": "spaceness-wp",
+  "name": "spaceness-website",
   "private": "true",
   "type": "module",
   "version": "0.0.1",
@@ -11,8 +11,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^4.2.8",
     "@astrojs/check": "^0.4.1",
+    "astro": "^4.2.8",
+    "sass": "^1.70.0",
+    "simple-icons": "^11.3.0",
     "typescript": "^5.3.3"
   }
 }

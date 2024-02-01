@@ -1,16 +1,134 @@
 ---
+import { siGit, siGithub, type SimpleIcon } from "simple-icons";
+import Main from "~/layouts/Main.astro";
 
+const socials: {
+  name: string;
+  href: string;
+  title: string;
+  icon: SimpleIcon;
+}[] = [
+  {
+    name: "Github",
+    href: "https://github.com/spaceness",
+    title: "spaceness",
+    icon: siGithub,
+  },
+];
+
+const projects: {
+  desc: string;
+  href: string;
+  title: string;
+}[] = [
+  {
+    title: "cryol",
+    href: "https://github.com/spaceness/cryol",
+    desc: "✨ Like chromium, but in your web browser",
+  },
+  {
+    title: "website",
+    href: "https://github.com/spaceness/spaceness",
+    desc: "🌌 Spaceness website",
+  },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<style lang="scss">
+  .container {
+    margin: auto;
+    max-width: 85ch;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 2ch;
+  }
+
+  .socials {
+    display: flex;
+    flex-direction: row;
+    gap: 1.3ch;
+
+    & > .social {
+      background-color: rgb(45, 45, 45);
+      padding: 10px;
+      display: flex;
+      flex-direction: row;
+      gap: 1ch;
+      color: white;
+      transition: 0.2s;
+
+      &:hover {
+        background-color: rgb(55, 55, 55);
+      }
+    }
+  }
+
+  .projects {
+    max-width: 100ch;
+    gap: 1ch;
+    display: flex;
+    flex-wrap: wrap;
+
+    & > .project {
+      background-color: rgb(35, 35, 35);
+      max-width: 35ch;
+      padding: 8px;
+    }
+  }
+</style>
+
+<Main>
+  <div class="container">
+    <div class="title">
+      <h1 style="font-weight: 900; line-height: 0.5;">spaceness</h1>
+      <span>we create things, but we allow them to be <b>YOUR</b> way</span>
+    </div>
+    <div class="socials">
+      {
+        socials.map((social) => (
+          <a
+            class="social"
+            href={social.href}
+            rel="me"
+            title={social.icon.title}
+          >
+            <span
+              set:html={`${social.icon.svg.replace(
+                `role="img"`,
+                `role="img" width="24" height="24" style="vertical-align: middle;" fill="currentColor"`
+              )}`}
+            />
+            <span>{social.title}</span>
+          </a>
+        ))
+      }
+    </div>
+    <div class="projects-container">
+      <h2>projects</h2>
+    <div class="projects">
+      {
+        projects.map((project) => (
+          <div class="project">
+            <span style="font-size: 32px;">{project.title}</span>
+            <p>{project.desc}</p>
+            <a
+              href={project.href}
+              rel="me"
+              style="display: flex;flex-direction:row;gap:1ch;background-color:rgb(45,45,45);max-width:fit-content;padding:10px;color:white"
+            >
+              <span
+                set:html={`${siGithub.svg.replace(
+                  `role="img"`,
+                  `role="img" width="24" height="24" style="vertical-align: middle;" fill="currentColor"`
+                )}`}
+              />
+              <span>Github</span>
+            </a>
+          </div>
+        ))
+      }
+    </div>
+    </div>
+  </div>
+</Main>
